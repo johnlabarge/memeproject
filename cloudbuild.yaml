@@ -2,5 +2,5 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '--tag=gcr.io/$PROJECT_ID/meme-maker:$TAG_NAME', '.']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['run', 'gcr.io/$PROJECT_ID/meme-maker:$TAG_NAME', 'python', 'test-makememe.py']
+  args: ['run', 'gcr.io/$PROJECT_ID/meme-maker:$TAG_NAME', 'test-makememe.py']
 images: ['gcr.io/$PROJECT_ID/sample-app:$TAG_NAME']
