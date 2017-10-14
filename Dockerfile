@@ -4,3 +4,5 @@ RUN apk add --no-cache bash py2-pip \
 COPY . /app
 WORKDIR /app
 RUN pip install -r requirements.txt 
+ENTRYPOINT ["python"]
+CMD ["makememe.py"]
