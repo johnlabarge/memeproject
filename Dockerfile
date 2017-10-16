@@ -1,7 +1,16 @@
 FROM alpine
-RUN apk add --no-cache bash py2-pip \
-	&& pip2 install --upgrade pip 
-RUN apk add jpeg-dev \
+RUN apk --no-cache add python \
+                       build-base \
+                       python-dev \
+					   # wget dependency
+					   openssl \
+					   # dev dependencies
+					   git \
+				   	   bash \
+					   sudo \
+                       py2-pip \
+                       # Pillow dependencies
+                       jpeg-dev \
                        zlib-dev \
                        freetype-dev \
                        lcms2-dev \
