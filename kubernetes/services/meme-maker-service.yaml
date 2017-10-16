@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: meme-maker
+  name: meme-maker 
+spec:
+  ports:
+  - name: flask 
+    port: 80
+    protocol: TCP
+    targetPort: 5000
+  selector:
+    app: meme-maker
+  sessionAffinity: None
+  type: NodePort
