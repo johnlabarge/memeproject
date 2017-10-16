@@ -1,25 +1,4 @@
-FROM alpine
-RUN apk --no-cache add python \
-                       build-base \
-                       python-dev \
-					   # wget dependency
-					   openssl \
-					   # dev dependencies
-					   git \
-				   	   bash \
-					   sudo \
-                       py2-pip \
-                       # Pillow dependencies
-                       jpeg-dev \
-                       zlib-dev \
-                       freetype-dev \
-                       lcms2-dev \
-                       openjpeg-dev \
-                       tiff-dev \
-                       tk-dev \
-                       tcl-dev \
-					   harfbuzz-dev \
-					   fribidi-dev 
+FROM gcr.io/coudjlb-container-devops/base-python 
 COPY . /app
 WORKDIR /app
 RUN pip install -r requirements.txt 
