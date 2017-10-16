@@ -10,6 +10,9 @@ app = Flask(__name__)
 font_path = os.path.join(os.path.dirname(__file__),
                                       'RobotoMonoBold.ttf')
 
+@app.route('/') 
+def health_check():
+   return "Healthy"
 
 @app.route('/base_image')
 def base_image():
@@ -64,6 +67,7 @@ def get_font(text,image,drawer):
 
 def base_image_bucket():
     return storage.Client().get_bucket("cloudjlb-container-devops-memeimages")
+
 
 def image():
     blob = base_image_bucket().blob("meme-image.jpg");
