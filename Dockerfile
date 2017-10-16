@@ -1,4 +1,4 @@
-FROM gcr.io/coudjlb-container-devops/base-python 
+FROM gcr.io/cloudjlb-container-devops/base-python 
 COPY . /app
 WORKDIR /app
 RUN pip install -r requirements.txt 
