@@ -9,8 +9,12 @@ from google.cloud import storage
 app = Flask(__name__)
 font_path = os.path.join(os.path.dirname(__file__),
                                       'RobotoMonoBold.ttf')
+if "TEMPLATE_REPO" in os.environ:
+    template_repo = os.environ["TEMPLATE_REPO"]
+else:
+    template_repo = "cloudjlb-container-devops-memeimages"
 
-@app.route('/') 
+@app.route('/')
 def health_check():
    return "Healthy"
 
@@ -66,7 +70,7 @@ def get_font(text,image,drawer):
             return font
 
 def base_image_bucket():
-    return storage.Client().get_bucket("cloudjlb-container-devops-memeimages")
+    return storage.Client().get_bucket(template_repo)
 
 
 def image():
