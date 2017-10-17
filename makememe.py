@@ -10,21 +10,21 @@ app = Flask(__name__)
 font_path = os.path.join(os.path.dirname(__file__),
                                       'RobotoMonoBold.ttf')
 
-@app.route('/') 
+@app.route('/')
 def health_check():
    return "Healthy"
 
 @app.route('/base_image')
 def base_image():
-     return send_file(image(),  mimetype='image/jpeg')#return 'Hello, World'
+     return send_file(image("meme_image"),  mimetype='image/jpeg')#return 'Hello, World'
 
-@app.route('/<string:top_text>/<string:bottom_text>')
-def make_meme(top_text,bottom_text):
+@app.route('/<string:image_name>/<string:top_text>/<string:bottom_text>')
+def make_meme(image_name,top_text,bottom_text):
 
     top_text = top_text.replace('_',' ')
     bottom_text = bottom_text.replace('_',' ')
 
-    memeImage = Image.open(image())
+    memeImage = Image.open(image(image_name))
     draw = ImageDraw.Draw(memeImage)
 
     top_font = get_font(top_text,memeImage,draw)
@@ -69,8 +69,8 @@ def base_image_bucket():
     return storage.Client().get_bucket("cloudjlb-container-devops-memeimages")
 
 
-def image():
-    blob = base_image_bucket().blob("meme-image.jpg");
+def image(name):
+    blob = base_image_bucket().blob(name+".jpg");
     f = io.BytesIO(b'')
     blob.download_to_file(f)
     f.seek(0)
